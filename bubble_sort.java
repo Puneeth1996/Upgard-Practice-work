@@ -1,34 +1,45 @@
+import java.util.Scanner;
 
-class BubbleSort {
-    public static int count = 0;
-
-    void bubbleSort(int arr[]) {
-        int n = arr.length;
-        for (int i = 0; i < n - 1; i++)
-            for (int j = 0; j < n - i - 1; j++)
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                    count++;
+class Source {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int m = input.nextInt(); // number of iterations
+        int n = input.nextInt(); // size of the array
+        int i = 0;
+        int[] arr = new int[n];
+        // below line helps in getting the input for the array elements
+        for (i = 0; i < n; i++) {
+            arr[i] = input.nextInt();
+        }
+        int pointer = 0;
+        for (i = 0; i < n; i++) {
+            // setting the initial value of swap to zero.
+            int swap = 0;
+            for (int j = 1; j < n - i; j++) {
+                if (arr[j - 1] > arr[j]) {
+                    // swapping when element at position j-1 is greater than element at j position.
+                    int temp = arr[j - 1];
+                    arr[j - 1] = arr[j];
+                    arr[j] = temp;
+                    swap = 1;
+                    if (j > m) {
+                        pointer++;
+                    }
+                    /*
+                     * if at any step the swapping is done, we change the swap value to one, so that
+                     * we know that the sequence is not sorted at this step.
+                     */
                 }
-    }
-
-    /* Prints the array */
-    void printArray(int arr[]) {
-        int n = arr.length;
-        for (int i = 0; i < n; ++i)
-            System.out.print(arr[i] + " ");
-        System.out.println();
-    }
-
-    // Driver method to test above
-    public static void main(String args[]) {
-        BubbleSort ob = new BubbleSort();
-        int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
-        ob.bubbleSort(arr);
-        // System.out.println("Sorted array");
-        // ob.printArray(arr);
-        System.out.println(count);
+            }
+            /*
+             * This will check if the swap value is not changed to 1, because if the value
+             * is not updated then it has not entered the inner loop even once, and no
+             * swapping was done. Therefore the sequence is sorted now.
+             */
+            if (swap == 0) {
+                break;
+            }
+        }
+        System.out.println(pointer);
     }
 }
