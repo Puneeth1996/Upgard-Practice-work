@@ -28,7 +28,7 @@ class Source {
 
         String sortedArray_lastNames[] = sort_sub(lastNames, lastNames.length);
         for (int i = sortedArray_lastNames.length - 1; i >= 0; i--) {
-            System.out.print(sortedArray_lastNames[i]);
+            System.out.println(sortedArray_lastNames[i]);
         }
     }
 
