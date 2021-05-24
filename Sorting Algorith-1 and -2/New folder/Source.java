@@ -48,6 +48,33 @@ class Source {
             sort(arr, pi + 1, high);
         }
     }
+    // Linear-search function to find the index of an element
+    public static int findIndex(int arr[], int t)
+    {
+ 
+        // if array is Null
+        if (arr == null) {
+            return -1;
+        }
+ 
+        // find length of array
+        int len = arr.length;
+        int i = 0;
+ 
+        // traverse in the array
+        while (i < len) {
+ 
+            // if the i-th element is t
+            // then return the index
+            if (arr[i] == t) {
+                return i;
+            }
+            else {
+                i = i + 1;
+            }
+        }
+        return -1;
+    }
 
     // Driver program
     public static void main(String args[]) {
@@ -66,8 +93,13 @@ class Source {
             sortedArr[i] = s.length();
         }
         ob.sort(sortedArr, 0, size - 1);
-        System.out.println(Arrays.toString(words_lendth));
-        System.out.println(Arrays.toString(sortedArr));
+        // System.out.println(Arrays.toString(words_lendth));
+        // System.out.println(Arrays.toString(sortedArr));
         // printArray(arr);
+        int index_temp = 0;
+        for ( int i = 0; i<size; i++){
+            index_temp = findIndex(words_lendth, sortedArr[i]);
+            System.out.println(words[index_temp]);
+        }
     }
 }
