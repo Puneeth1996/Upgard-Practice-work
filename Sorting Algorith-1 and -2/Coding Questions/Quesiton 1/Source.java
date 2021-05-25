@@ -63,14 +63,44 @@ class source {
         Arrays.sort(array2);
 
         System.out.printf("Modified array2[] : %s", Arrays.toString(array2));
+        System.out.println(" ");
+        int can_replace = 0;
+
         // Then start from index 1 for the first array. If any element after it has a
-        // value not in sync enter loop
-        // The loop should end before n-2
-        // The loop should then try the values from the sorted arry to see if it's sync
-        // with the sequence
-        // If it is return the value. That's all.
-        // Once traversing through the entire loop is complete and the value is not
-        // found
-        // Put not possible
+        for (int i = 0; i < n1; i++) {
+
+            // The loop should end before n-2
+            // or
+            // should check the boundary lengths
+            if ((i + 1 <= n1) && (array1[i] < array1[i + 1])) {
+                continue;
+                // should check if the there is a next to next element from i th index of the
+                // array 1
+                // if ((i + 2 <= n1) && (array1[i + 2])) {
+                // // continue;
+                // for (int j = 0; j < n2; j++) {
+                // if (array2[j] < array1[i + 2]) {
+                // can_replace = array2[j];
+                // } else {
+                // can_replace = 0;
+                // }
+
+                // }
+                // }
+
+                // value not in sync enter loop
+                // The loop should then try the values from the sorted arry to see if it's sync
+                // with the sequence
+                // If it is return the value. That's all.
+                // Once traversing through the entire loop is complete and the value is not
+                // found
+                // Put not possible
+
+            } else {
+                if (i + 1 < n1) {
+                    System.out.println("%s " + array1[i] + " : " + array1[i + 1]);
+                }
+            }
+        }
     }
 }
