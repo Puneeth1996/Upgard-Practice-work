@@ -62,8 +62,8 @@ class source {
         // So sort the second arry in descending order.
         Arrays.sort(array2);
 
-        System.out.printf("Modified array2[] : %s", Arrays.toString(array2));
-        System.out.println(" ");
+        // System.out.printf("Modified array2[] : %s", Arrays.toString(array2));
+        // System.out.println(" ");
         int can_replace = 0;
         int replace_number_from_array2 = 0;
 
@@ -102,22 +102,24 @@ class source {
         // System.out.println("%s " + array1[i] + " : " + array1[i + 1]);
         // }
         // }
-        System.out.println("\n\n");
-        System.out.println(Arrays.toString(array1));
-        System.out.println("\n\n");
+        // System.out.println("\n\n");
+        // System.out.println(Arrays.toString(array1));
+        // System.out.println("\n\n");
         for (int i = 0; i <= n1 - 2; i++) {
             if (!(array1[i] < array1[i + 1])) {
-                System.out.println(
-                        "This is the element, we should replace this element and check if array1[i] > replacing_element < (ele,emt from 2nd array) = "
-                                + array1[i + 1]);
+                // System.out.println(
+                // "This is the element, we should replace this element and check if array1[i] >
+                // replacing_element < (ele,emt from 2nd array) = "
+                // + array1[i + 1]);
                 for (int j = 0; j < n2; j++) {
-                    System.out.println(
-                            array2[j] + " | Pair : " + array1[i] + " and " + array1[i + 1] + " and " + array1[i + 2]);
+                    // System.out.println(
+                    // array2[j] + " | Pair : " + array1[i] + " and " + array1[i + 1] + " and " +
+                    // array1[i + 2]);
 
-                    System.out.println(array1[i] < array2[j]);
-                    System.out.println(array2[j] < array1[i + 1]);
+                    // System.out.println(array1[i] < array2[j]);
+                    // System.out.println(array2[j] < array1[i + 1]);
                     if ((array1[i] < array2[j]) && (array2[j] < array1[i + 2])) {
-                        System.out.println(array2[j]);
+                        // System.out.println(array2[j]);
                         can_replace = 1;
                         replace_number_from_array2 = array2[j];
                     }
