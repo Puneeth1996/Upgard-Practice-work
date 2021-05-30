@@ -1,26 +1,42 @@
 import java.util.Scanner;
 import java.util.*;
 
-public class sortIncDecEveOdd {
+public class sortIncDecEveOdd {{
+
     static void sortIncDec(int arr[], int n) {
-        Vector<Integer> odd_indexes = new Vector<Integer>();
-        Vector<Integer> even_indexes = new Vector<Integer>();
-        for (int i = 0; i < n; i++) {
-            if (i % 2 == 0)
-                odd_indexes.add(arr[i]);
-            else
-                even_indexes.add(arr[i]);
+        int i = 1;
+        int j = n - 1;
+        if (j % 2 != 0)
+            j--;
 
+        // swapping till half of array
+        while (i < j) {
+            arr = swap(arr, i, j);
+            i += 2;
+            j -= 2;
         }
-        Collections.sort(odd_indexes);
-        Collections.sort(even_indexes);
 
-        for (int i = 0; i < odd_indexes.size(); i++)
-            System.out.print(odd_indexes.get(i) + " ");
-        // System.out.println("");
-        for (int i = 0; i < even_indexes.size(); i++)
-            System.out.print(even_indexes.get(i) + " ");
+        // Sort first half in increasing
+        Arrays.sort(arr, 0, (n + 1) / 2);
 
+        // Sort second half in decreasing
+        Arrays.sort(arr, (n + 1) / 2, n);
+        int low = (n + 1) / 2, high = n - 1;
+        // Reverse the second half
+        while (low < high) {
+            Integer temp = arr[low];
+            arr[low] = arr[high];
+            arr[high] = temp;
+            low++;
+            high--;
+        }
+    }
+
+    static int[] swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        return arr;
     }
 
     public static void main(String[] args) {
@@ -31,5 +47,7 @@ public class sortIncDecEveOdd {
         for (int i = 0; i < n; i++)
             arr[i] = s.nextInt();
         sortIncDec(arr, n);
+        for (int i = 0; i < n; i++)
+            System.out.print(arr[i] + " ");
     }
 }
