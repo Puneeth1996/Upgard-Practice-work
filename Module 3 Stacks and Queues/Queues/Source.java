@@ -1,53 +1,67 @@
 import java.util.*;
 
-class Source {
+public class Source {
+    class Node {
+        char data;
+        Node next;
 
-    // Function to find duplicate parenthesis in a
-    // balanced expression
-    static String findDuplicateParenthesis(String s) {
-        // create a stack of characters
-        Stack<Character> Stack = new Stack<>();
-
-        // Iterate through the given expression
-        char[] str = s.toCharArray();
-        for (char ch : str) {
-            // if current character is close parenthesis ')'
-            if (ch == ')') {
-                // pop character from the stack
-                char top = Stack.peek();
-                Stack.pop();
-
-                // stores the number of characters between a
-                // closing and opening parenthesis
-                // if this count is less than or equal to 1
-                // then the brackets are redundant else not
-                int elementsInside = 0;
-                while (top != '(') {
-                    elementsInside++;
-                    top = Stack.peek();
-                    Stack.pop();
-                }
-                if (elementsInside < 1) {
-                    return "Input string contains duplicate parenthesis";
-                }
-            } // push open parenthesis '(', operators and
-              // operands to stack
-            else {
-                Stack.push(ch);
-            }
+        public Node(char new_data) {
+            data = new_data;
+            next = null;
         }
+    }
 
-        // No duplicates found
-        return "Input string does not contain duplicate parenthesis";
+    Node top;
+
+    // Push and pop operations
+    public void push(char new_data) {
+
+        Node new_node = new Node(new_data);
+        if (top == null) {
+
+            top = new_node;
+        } else {
+            new_node.next = top;
+            top = new_node;
+
+        }
+    }
+
+    public Node pop() {
+        Node node = top;
+        top = top.next;
+        return node;
+    }
+
+    // prints contents of stack
+    public void display(Node node) {
+        Node temp = node;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+
+    // Reverses the stack using simple
+    // linked list reversal logic.
+    public Node reverse() {
+        // Write your code here.
     }
 
     public static void main(String[] args) {
         Source obj = new Source();
-        String inputString = new String();
         Scanner in = new Scanner(System.in);
-        inputString = in.nextLine();
-        System.out.println(obj.findDuplicateParenthesis(inputString));
+        int n = in.nextInt();
+        for (int i = 0; i < n; i++) {
+            obj.push(in.next().charAt(0));
+
+        }
+
+        obj.display(obj.top);
+        System.out.println(" ");
+        // reverse
+        Node temp = obj.reverse();
+        obj.display(temp);
 
     }
-
 }
