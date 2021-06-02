@@ -15,15 +15,12 @@ public class Source {
 
     // Push and pop operations
     public void push(char new_data) {
-
         Node new_node = new Node(new_data);
         if (top == null) {
-
             top = new_node;
         } else {
             new_node.next = top;
             top = new_node;
-
         }
     }
 
@@ -45,7 +42,18 @@ public class Source {
     // Reverses the stack using simple
     // linked list reversal logic.
     public Node reverse() {
-        // Write your code here.
+        Node prev, cur, succ;
+        cur = prev = this.top;
+        cur = cur.next;
+        prev.next = null;
+        while (cur != null) {
+
+            succ = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = succ;
+        }
+        return prev;
     }
 
     public static void main(String[] args) {
@@ -54,14 +62,17 @@ public class Source {
         int n = in.nextInt();
         for (int i = 0; i < n; i++) {
             obj.push(in.next().charAt(0));
-
         }
 
         obj.display(obj.top);
         System.out.println(" ");
         // reverse
-        Node temp = obj.reverse();
-        obj.display(temp);
+        if (n > 0) {
+            Node temp = obj.reverse();
+            obj.display(temp);
+        } else {
+            System.out.println("the stack is empty");
+        }
 
     }
 }
