@@ -28,8 +28,28 @@ import java.util.Stack;
 public class Stacks {
 
     public static Boolean contains(Stack<Integer> sequence1, Stack<Integer> sequence2) {
-        // This block will be filled by the student
-        // first check which is the great sequence stack
+        // // This block will be filled by the student
+        // // first check which is the great sequence stack
+        // if (sequence1.size() > sequence2.size()) {
+        // // System.out.println(sequence1);
+        // // System.out.println(sequence2);
+        // // boolean flag = true;
+        // // while(sequence1.size() > 0){
+        // // if(sequence1.pop()
+        // // }
+        // }
+        // return true;
+        // If last characters of two strings are matching
+        // Base Cases
+        if (m == 0)
+            return true;
+        if (n == 0)
+            return false;
+        if (sequence1.pop() == sequence2.pop())
+            return contains(sequence1, sequence2);
+
+        // If last characters are not matching
+        return contains(str1, str2, m, n - 1);
     }
 
     public static void main(String[] args) {
