@@ -9,21 +9,20 @@ class tes {
         int n = s.nextInt();
         while (n-- > 0)
             queue.add(s.nextInt());
-        printFifthElementFromStart(queue);
+        printFifthElementFromEnd(queue);
     }
 
-    // Method to print the fifth element from the head of the queue
-    static void printFifthElementFromStart(Queue<Integer> queue) {
+    // Method to print the fifth element from the tail of the queue
+    static void printFifthElementFromEnd(Queue<Integer> queue) {
         // Write your code here
         if (queue.size() > 5) {
-            queue.remove();
-            queue.remove();
-            queue.remove();
-            queue.remove();
+            int val = queue.size() - 5;
+            while (val-- > 0) {
+                queue.remove();
+            }
             System.out.println(queue.peek());
         } else {
             System.out.println("There are not enough elements in the queue");
         }
-
     }
 }
