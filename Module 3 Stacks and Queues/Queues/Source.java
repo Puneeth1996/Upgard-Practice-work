@@ -4,60 +4,86 @@ import java.util.*;
 
 class Source {
 
-    /* implementing queue using linked list */
-    Queue<Integer> q = new LinkedList<Integer>();
+    private static final int capacity = 3;
+    Character arr[] = new Character[capacity];
+    int size = 0;
+    int top = -1;
+    int rear = 0;
 
-    // Push operation
-    void push(int val) {
-        // get previous size of queue
-        int size = q.size();
-
-        // Add current element
-        q.add(val);
-
-        // Pop (or Dequeue) all previous
-        // elements and put them after current
-        // element
-        for (int i = 0; i < size; i++) {
-            // this will add front element into
-            // rear of queue
-            int x = q.remove();
-            q.add(x);
+    public void enqueue(Character pushedElement) {
+        if (top < capacity - 1) {
+            top++;
+            arr[top] = pushedElement;
+        } else {
+            System.out.println("Overflow !");
         }
+
     }
 
-    // Removes the top element
-    int pop() {
-        if (q.isEmpty()) {
-            System.out.println("Stack is empty");
+    public Character dequeue() {
+        Character c = arr[rear];
+        if (top >= rear) {
+            rear++;
+        } else {
+            System.out.println("Underflow !");
         }
-        int x = q.remove();
-        return x;
+        return c;
     }
 
-    // Returns top of stack
-    int top() {
-        if (q.isEmpty())
-            return -1;
-        else
-            return q.peek();
+    private LinkedList<Character> linklist = new LinkedList<Character>();
+
+    public void push(Character item) {
+        linklist.addFirst(item);
+    }
+
+    public Character pop() {
+        if (linklist.size() <= 0)
+            System.out.println("Empty Stack");
+        return linklist.removeFirst();
+    }
+
+    public Character top() {
+        return linklist.getFirst();
+    }
+
+    boolean test(String candidate) {
+        char ch;
+        int length = candidate.length(), numLetters = 0, charCount;
+
+        char fromStack, fromQueue;
+        boolean stillPalindrome;
+
+        for (int i = 0; i < length; i++) {
+            ch = candidate.charAt(i);
+            if (Character.isLetter(ch)) {
+                numLetters++;
+                ch = Character.toLowerCase(ch);
+                push(ch);
+                enqueue(ch);
+            }
+        }
+
+        stillPalindrome = true;
+        charCount = 0;
+        while (stillPalindrome && (charCount < numLetters)) {
+            fromStack = (Character) top();
+            pop();
+            fromQueue = dequeue();
+            if (fromStack != fromQueue)
+                stillPalindrome = false;
+            charCount++;
+        }
+
+        return stillPalindrome;
     }
 
     public static void main(String[] args) {
         Source obj = new Source();
         Scanner in = new Scanner(System.in);
-
-        /* Enter the number of elements you want to add in the stack */
-
-        int n = in.nextInt();
-
-        /* Enter the elements of the stack */
-        for (int i = 0; i < n; i++) {
-            obj.push(in.nextInt());
-        }
-        System.out.println(obj.top());
-        obj.pop();
-        System.out.println(obj.top());
-
+        String inputString = in.nextLine();
+        if (obj.test(inputString))
+            System.out.println("'" + inputString + "' is a palindrome.");
+        else
+            System.out.println("'" + inputString + "' is NOT a palindrome.");
     }
 }
