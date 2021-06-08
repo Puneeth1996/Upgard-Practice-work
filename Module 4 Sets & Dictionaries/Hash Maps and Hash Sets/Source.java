@@ -1,38 +1,46 @@
-import java.util.HashMap;
 import java.util.Scanner;
 
-class Source {
+// Java program to find first
+// non-repeating character
+public class Source {
+    static final int NO_OF_CHARS = 256;
+    static char count[] = new char[NO_OF_CHARS];
 
-    public static void main(String arg[]) {
-        Scanner in = new Scanner(System.in);
+    /*
+     * calculate count of characters in the passed string
+     */
+    static void getCharCountArray(String str) {
+        for (int i = 0; i < str.length(); i++)
+            count[str.charAt(i)]++;
+    }
 
-        // number of pairs in the array
-        int n = in.nextInt();
-        int arr[][] = new int[n][2];
+    /*
+     * The method returns index of first non-repeating character in a string. If all
+     * characters are repeating then returns -1
+     */
+    static int firstNonRepeating(String str) {
+        getCharCountArray(str);
+        int index = -1, i;
 
-        // store the input pairs to an array "arr"
-        for (int i = 0; i < n; i++) {
-            arr[i][0] = in.nextInt();
-            arr[i][1] = in.nextInt();
-        }
-
-        // Write your code here
-        HashMap<Integer, Integer> hasM = new HashMap<>();
-        boolean flag = false;
-        for (int i = 0; i < arr.length; i++) {
-            int frst = arr[i][0];
-            int sec = arr[i][1];
-            Integer data = hasM.get(sec);
-            if (data != null && data == frst) {
-                System.out.println(sec + " " + frst);
-                flag = true;
-            } else {
-                hasM.put(frst, sec);
+        for (i = 0; i < str.length(); i++) {
+            if (count[str.charAt(i)] == 1) {
+                index = i;
+                break;
             }
         }
-        if (!flag) {
-            System.out.println("No Symmetric pair");
-        }
 
+        return index;
+    }
+
+    // Driver method
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        // storing the input string to String variable "str"
+        String str = in.nextLine();
+        int index = firstNonRepeating(str);
+
+        System.out.println(index == -1 ? "Either all characters are repeating or string " + "is empty"
+                : "First non-repeating character is " + str.charAt(index));
     }
 }
