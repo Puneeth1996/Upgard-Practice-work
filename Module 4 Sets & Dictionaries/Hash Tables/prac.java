@@ -12,6 +12,11 @@ class prac {
         }
 
         for (int i : arr) {
+            if (!boardingPass.containsKey(i)) {
+                boardingPass.put(i, "Checked");
+            } else {
+                System.out.println("This is a duplicate Boarding Pass Number" + i);
+            }
         }
     }
 }
