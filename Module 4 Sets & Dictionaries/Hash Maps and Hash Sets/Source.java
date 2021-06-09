@@ -1,44 +1,61 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
-class Source {
-
-    // Returns number of pairs
-    // in arr[0..n-1] with sum
-    // equal to 'sum'
-    static void printPairs(int arr[], int n, int sum) {
-        // int count = 0;
-
-        // Consider all possible pairs
-        // and check their sums
-        boolean flag = false;
-        for (int i = 0; i < n; i++)
-            for (int j = i + 1; j < n; j++)
-                if (arr[i] + arr[j] == sum)
-                    flag = true;
-        if (flag)
-            System.out.println("true");
-        else
-            System.out.println("false");
-    }
-
+public class Source {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        // number of the elements
+        // get the no of tickets from input
         int n = in.nextInt();
 
-        int array[] = new int[n];
+        // map to store all the tickets
+        Map<String, String> tickets = new HashMap<String, String>();
 
-        // storing the input integers to an array
+        // Store the source and destination of the tickets to the map "tickets"
         for (int i = 0; i < n; i++) {
-            array[i] = in.nextInt();
+            tickets.put(in.next(), in.next());
+            in.nextLine();
         }
 
-        // getting the target sum from input
-        int targetSum = in.nextInt();
-
         // write your code here
-        printPairs(array, n, targetSum);
+        printResult(tickets);
 
+    }
+
+    // This function populates 'result' for given input 'dataset'
+    private static void printResult(Map<String, String> dataSet) {
+        // To store reverse of given map
+        Map<String, String> reverseMap = new HashMap<String, String>();
+
+        // To fill reverse map, iterate through the given map
+        for (Map.Entry<String, String> entry : dataSet.entrySet())
+            reverseMap.put(entry.getValue(), entry.getKey());
+
+        // Find the starting point of itinerary
+        String start = null;
+        for (Map.Entry<String, String> entry : dataSet.entrySet()) {
+            if (!reverseMap.containsKey(entry.getKey())) {
+                start = entry.getKey();
+                break;
+            }
+        }
+
+        // If we could not find a starting point, then something wrong
+        // with input
+        if (start == null) {
+            System.out.println("Invalid Input");
+            return;
+        }
+
+        // Once we have starting point, we simple need to go next, next
+        // of next using given hash map
+        String to = dataSet.get(start);
+        while (to != null) {
+            // System.out.print(start + "->" + to + ", ");
+            System.out.print(start + " ");
+            start = to;
+            to = dataSet.get(to);
+        }
     }
 }
