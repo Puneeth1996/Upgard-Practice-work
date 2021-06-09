@@ -1,46 +1,28 @@
-import java.util.Scanner;
+import java.util.*;
 
-// Java program to find first
-// non-repeating character
-public class Source {
-    static final int NO_OF_CHARS = 256;
-    static char count[] = new char[NO_OF_CHARS];
-
-    /*
-     * calculate count of characters in the passed string
-     */
-    static void getCharCountArray(String str) {
-        for (int i = 0; i < str.length(); i++)
-            count[str.charAt(i)]++;
+class Source {
+    public static void main(String[] args) {
+        int arr[] = { 5, 8, 4, 4, 7, 6, 2, 6, 7, 3 };
+        method(arr);
     }
 
-    /*
-     * The method returns index of first non-repeating character in a string. If all
-     * characters are repeating then returns -1
-     */
-    static int firstNonRepeating(String str) {
-        getCharCountArray(str);
-        int index = -1, i;
+    public static void method(int[] array) {
+        int count = 0, n = array.length;
 
-        for (i = 0; i < str.length(); i++) {
-            if (count[str.charAt(i)] == 1) {
-                index = i;
-                break;
-            }
+        HashSet<Integer> hashSet = new HashSet<Integer>();
+
+        for (int i = 0; i < n; i++)
+            hashSet.add(array[i]);
+
+        int currentElement = array[0];
+
+        while (hashSet.contains(currentElement) == true) {
+
+            count++;
+
+            currentElement--;
         }
 
-        return index;
-    }
-
-    // Driver method
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-
-        // storing the input string to String variable "str"
-        String str = in.nextLine();
-        int index = firstNonRepeating(str);
-
-        System.out.println(index == -1 ? "Either all characters are repeating or string " + "is empty"
-                : "First non-repeating character is " + str.charAt(index));
+        System.out.println(count);
     }
 }
