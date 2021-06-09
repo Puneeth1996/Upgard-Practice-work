@@ -1,33 +1,43 @@
 import java.util.*;
 
-public class Source {
-    // Method to print distinct values
-    public static void printValues(Map<Integer, String> map) {
-        Set<String> anSet = new HashSet<String>();
-        map.entrySet().forEach(entry -> {
-            anSet.add(entry.getValue());
-        });
-        // creates Iterator oblect.
-        Iterator itr = anSet.iterator();
+class Source {
+    // function to check whether
+    // the array contains a set
+    // of contiguous integers
+    static boolean areElementsContiguous(int arr[], int n) {
+        // Sort the array
+        Arrays.sort(arr);
 
-        // check element is present or not. if not loop will
-        // break.
-        while (itr.hasNext()) {
-            System.out.print(itr.next() + " ");
-        }
+        // After sorting, check if
+        // current element is either
+        // same as previous or is
+        // one more.
+        for (int i = 1; i < n; i++)
+            if (arr[i] - arr[i - 1] > 1)
+                return false;
+
+        return true;
     }
 
-    public static void main(String[] x) {
-        Map<Integer, String> map = new HashMap<>();
-        Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-        int key;
-        String value;
-        for (int i = 1; i <= num; i++) {
-            key = sc.nextInt();
-            value = sc.next();
-            map.put(key, value);
-            printValues(map);
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n;
+        n = in.nextInt();
+
+        // array to store the input elements
+        int[] array = new int[n];
+
+        // storing the elements to the array
+        for (int i = 0; i < n; i++) {
+            array[i] = in.nextInt();
         }
+
+        // Write your code here
+        if (areElementsContiguous(array, n))
+            System.out.println("Yes");
+
+        else
+            System.out.println("No");
+
     }
 }
