@@ -1,43 +1,44 @@
-import java.util.*;
+import java.util.Scanner;
 
 class Source {
-    // function to check whether
-    // the array contains a set
-    // of contiguous integers
-    static boolean areElementsContiguous(int arr[], int n) {
-        // Sort the array
-        Arrays.sort(arr);
 
-        // After sorting, check if
-        // current element is either
-        // same as previous or is
-        // one more.
-        for (int i = 1; i < n; i++)
-            if (arr[i] - arr[i - 1] > 1)
-                return false;
+    // Returns number of pairs
+    // in arr[0..n-1] with sum
+    // equal to 'sum'
+    static void printPairs(int arr[], int n, int sum) {
+        // int count = 0;
 
-        return true;
+        // Consider all possible pairs
+        // and check their sums
+        boolean flag = false;
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++)
+                if (arr[i] + arr[j] == sum)
+                    flag = true;
+        if (flag)
+            System.out.println("true");
+        else
+            System.out.println("false");
     }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int n;
-        n = in.nextInt();
 
-        // array to store the input elements
-        int[] array = new int[n];
+        // number of the elements
+        int n = in.nextInt();
 
-        // storing the elements to the array
+        int array[] = new int[n];
+
+        // storing the input integers to an array
         for (int i = 0; i < n; i++) {
             array[i] = in.nextInt();
         }
 
-        // Write your code here
-        if (areElementsContiguous(array, n))
-            System.out.println("Yes");
+        // getting the target sum from input
+        int targetSum = in.nextInt();
 
-        else
-            System.out.println("No");
+        // write your code here
+        printPairs(array, n, targetSum);
 
     }
 }
