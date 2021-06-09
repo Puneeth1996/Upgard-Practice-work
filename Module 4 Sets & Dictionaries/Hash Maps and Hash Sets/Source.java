@@ -1,28 +1,33 @@
 import java.util.*;
 
-class Source {
-    public static void main(String[] args) {
-        int arr[] = { 5, 8, 4, 4, 7, 6, 2, 6, 7, 3 };
-        method(arr);
+public class Source {
+    // Method to print distinct values
+    public static void printValues(Map<Integer, String> map) {
+        Set<String> anSet = new HashSet<String>();
+        map.entrySet().forEach(entry -> {
+            anSet.add(entry.getValue());
+        });
+        // creates Iterator oblect.
+        Iterator itr = anSet.iterator();
+
+        // check element is present or not. if not loop will
+        // break.
+        while (itr.hasNext()) {
+            System.out.print(itr.next() + " ");
+        }
     }
 
-    public static void method(int[] array) {
-        int count = 0, n = array.length;
-
-        HashSet<Integer> hashSet = new HashSet<Integer>();
-
-        for (int i = 0; i < n; i++)
-            hashSet.add(array[i]);
-
-        int currentElement = array[0];
-
-        while (hashSet.contains(currentElement) == true) {
-
-            count++;
-
-            currentElement--;
+    public static void main(String[] x) {
+        Map<Integer, String> map = new HashMap<>();
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        int key;
+        String value;
+        for (int i = 1; i <= num; i++) {
+            key = sc.nextInt();
+            value = sc.next();
+            map.put(key, value);
+            printValues(map);
         }
-
-        System.out.println(count);
     }
 }
