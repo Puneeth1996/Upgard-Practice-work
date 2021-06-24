@@ -2,42 +2,30 @@ import java.util.*;
 
 public class Source {
 
-    public static void findItinerary(Map<String, String> dataSet)
+    public static int search(int arr[], int t)
     {
-        Map<String, String> reverseMap = new HashMap<String, String>();
-        for (Map.Entry<String,String> entry: dataSet.entrySet())
-            reverseMap.put(entry.getValue(), entry.getKey());
-        String start = null;
-        for (Map.Entry<String,String> entry: dataSet.entrySet())
-        {
-            if (!reverseMap.containsKey(entry.getKey()))
-            {
-                start = entry.getKey();
-                break;
-            }
-        }
-        if (start == null)
-        {
-        System.out.println("Invalid Input");
-        return;
-        }
-        String to = dataSet.get(start);
-        while (to != null)
-        {
-            System.out.print(start +  "->" + to + "\n");
-            start = to;
-            to = dataSet.get(to);
-        }
+        ArrayList<Integer> clist = new ArrayList<>();
+
+        for (int i : arr)
+            clist.add(i);
+
+        return clist.indexOf(t);
     }
 
-    public static void main(String[] args) {
-        Map<String, String> tickets = new HashMap<String, String>();
+    public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
-        int n  = sc.nextInt();
+        int n = sc.nextInt();
+        int arr[] = new int[n];
         for(int i = 0 ; i < n ; i++){
-            tickets.put(sc.next(),sc.next());
+            arr[i] = sc.nextInt();
         }
-        findItinerary(tickets);
+        int key = sc.nextInt();
+        int i = search(arr, key);
+        if (i != -1) {
+            System.out.println(i);
+        } else {
+            System.out.println("-1");
+        }
         sc.close();
     }
 }
