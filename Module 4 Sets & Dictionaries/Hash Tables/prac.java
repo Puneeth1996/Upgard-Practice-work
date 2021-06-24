@@ -18,5 +18,6 @@ class prac {
                 System.out.println("This is a duplicate Boarding Pass Number" + i);
             }
         }
+        scanner.close();
     }
 }
