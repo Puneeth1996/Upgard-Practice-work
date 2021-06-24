@@ -2,29 +2,39 @@ import java.util.*;
 
 public class Source {
 
-    public static int sumBetweenPthToQthSmallestElement(int[] arr, int p, int q) {
-        // Sort the given array
-        Arrays.sort(arr);
+    public static void symmetricPair(int[][] arr) {
+        // Creates an empty hashMap hM
+        HashMap<Integer, Integer> hM = new HashMap<Integer, Integer>();
 
-        // Below code is equivalent to
-        int result = 0;
+        // Traverse through the given array
+        for (int i = 0; i < arr.length; i++)
+        {
+            // First and second elements of current pair
+            int first = arr[i][0];
+            int sec   = arr[i][1];
+            
+            // Look for second element of this pair in hash
+            Integer val = hM.get(sec);
 
-        for (int i = p; i < q - 1; i++)
-            result += arr[i];
-
-        return result;
-    }
-    
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int arr[] = new int[n];
-        for(int i = 0; i < n; i++){
-            arr[i] = sc.nextInt();
+            // If found and value in hash matches with first
+            // element of this pair, we found symmetry
+            if (val != null && val == first)
+            System.out.println( sec + " " + first );
+                
+            else  // Else put sec element of this pair in hash
+            hM.put(first, sec);
         }
-        int p = sc.nextInt();
-        int q = sc.nextInt();
-        System.out.println(sumBetweenPthToQthSmallestElement(arr, p, q));
-        sc.close();
+    }
+
+    public static void main(String arg[]) {
+        Scanner sc = new Scanner(System.in);
+        int row = sc.nextInt();
+        int arr[][] = new int[row][2];
+        for(int i = 0 ; i < row ; i++){
+            for(int j = 0 ; j < 2 ; j++){
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        symmetricPair(arr);
     }
 }
