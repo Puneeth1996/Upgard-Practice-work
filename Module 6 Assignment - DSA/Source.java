@@ -2,39 +2,49 @@ import java.util.*;
 
 public class Source {
 
-    public static void symmetricPair(int[][] arr) {
-        // Creates an empty hashMap hM
-        HashMap<Integer, Integer> hM = new HashMap<Integer, Integer>();
-
-        // Traverse through the given array
-        for (int i = 0; i < arr.length; i++)
+    public static void printElementInAllRows( int mat[][], int row, int col )
+    {   
+        int[] arr = new int[row];
+        int count  = 0;
+        Map<Integer,Integer> mp = new HashMap<>();
+        for (int j = 0; j < col; j++)
+            mp.put(mat[0][j],1);
+        for (int i = 1; i < row; i++)
         {
-            // First and second elements of current pair
-            int first = arr[i][0];
-            int sec   = arr[i][1];
-            
-            // Look for second element of this pair in hash
-            Integer val = hM.get(sec);
-
-            // If found and value in hash matches with first
-            // element of this pair, we found symmetry
-            if (val != null && val == first)
-            System.out.println( sec + " " + first );
-                
-            else  // Else put sec element of this pair in hash
-            hM.put(first, sec);
-        }
-    }
-
-    public static void main(String arg[]) {
-        Scanner sc = new Scanner(System.in);
-        int row = sc.nextInt();
-        int arr[][] = new int[row][2];
-        for(int i = 0 ; i < row ; i++){
-            for(int j = 0 ; j < 2 ; j++){
-                arr[i][j] = sc.nextInt();
+            for (int j = 0; j < col; j++)
+            {
+                if (mp.get(mat[i][j]) != null && mp.get(mat[i][j]) == i)
+                {
+                    mp.put(mat[i][j], i + 1);
+                    if (i == row - 1){
+                        count++;
+                        arr[count] = mat[i][j];
+                    }
+                }
             }
         }
-        symmetricPair(arr);
+        Arrays.sort(arr);
+        for (int i = 0; i < arr.length; i++){
+            if(arr[i]>0){
+                System.out.print(arr[i] + " ");
+            }            
+        }
+
+    }
+
+    public static void main(String[] args) {
+        Scanner sc =  new Scanner(System.in);
+        int row = sc.nextInt();
+        int col = sc.nextInt();
+        
+        int matrix[][] = new int[row][col];
+        for(int i = 0 ; i < row ; i++){
+            for(int j = 0 ; j < col ; j++){
+                matrix[i][j] = sc.nextInt();
+            }
+        }
+
+        printElementInAllRows(matrix, row, col);
+        sc.close();
     }
 }
