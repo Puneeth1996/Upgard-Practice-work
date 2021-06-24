@@ -1,44 +1,101 @@
-import java.util.*;
+import java.io.*; 
+import java.util.*; 
+
 
 public class Source {
 
-    static int mostFrequent(int arr[], int n)
-    {
-        Arrays.sort(arr);
-        int max_count = 1;
-        int res = arr[0];
-        int curr_count = 1;
-        for (int i = 1; i < n; i++)
-        {
-            if (arr[i] == arr[i - 1])
-                curr_count++;
-            else
-            {
-                if (curr_count > max_count)
-                {
-                    max_count = curr_count;
-                    res = arr[i - 1];
-                }
-                curr_count = 1;
-            }
+    private int vertexCount;
+    private static LinkedList<Integer> adj[];
+
+
+    @SuppressWarnings("unchecked")
+    Source(int vertexCount) {
+        this.vertexCount = vertexCount;
+        Source.adj = new LinkedList[vertexCount];
+        for (int i = 0; i < vertexCount; ++i) {
+            adj[i] = new LinkedList<Integer>();    
         }
-        if (curr_count > max_count)
-        {
-            max_count = curr_count;
-            res = arr[n - 1];
-        }
-        return res;
     }
 
+    public void addEdge(int v, int w) { 
+        adj[v].add(w); 
+        adj[w].add(v); 
+    } 
 
-    public static void main(String[] args) {
-        int n;
+    private boolean isValidIndex(int i) {
+        return false;
+        // Write code here
+        
+    }
+
+    private boolean isCyclic(int v, boolean visited[], int parent) { 
+        // Mark the current node as visited 
+        visited[v] = true; 
+        Integer i; 
+
+        // Recur for all the vertices adjacent to this vertex 
+        Iterator<Integer> it = adj[v].iterator(); 
+        while (it.hasNext()) 
+        { 
+            i = it.next(); 
+
+            // If an adjacent is not visited, then recur for 
+            // that adjacent 
+            if (!visited[i]) 
+            { 
+                if (isCyclic(i, visited, v)) 
+                    return true; 
+            } 
+
+            // If an adjacent is visited and not parent of 
+            // current vertex, then there is a cycle. 
+            else if (i != parent) 
+            return true; 
+        } 
+        return false; 
+    } 
+
+    public boolean isTree() 
+    { 
+        // Mark all the vertices as not visited and not part 
+        // of recursion stack 
+        boolean visited[] = new boolean[vertexCount]; 
+        for (int i = 0; i < vertexCount; i++) 
+            visited[i] = false; 
+
+        // The call to isCyclic serves multiple purposes 
+        // It returns true if graph reachable from vertex 0 
+        // is cyclcic. It also marks all vertices reachable 
+        // from 0. 
+        if (isCyclic(0, visited, -1)) 
+            return false; 
+
+        // If we find a vertex which is not reachable from 0 
+        // (not marked by isCyclic(), then we return false 
+        for (int u = 0; u < vertexCount; u++) 
+            if (!visited[u]) 
+                return false; 
+
+        return true; 
+    } 
+
+    public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        int arr[] = new int[n];
-        for(int i = 0; i < n; i++){
-            arr[i] = sc.nextInt();
+        // Get the number of nodes from the input.
+        int noOfNodes =  sc.nextInt();
+        // Get the number of edges from the input.
+        int noOfEdges = sc.nextInt();
+
+        Source graph = new Source(noOfNodes);
+        // Adding edges to the graph
+        for (int i = 0; i <noOfEdges; ++i) {
+            graph.addEdge(sc.nextInt(),sc.nextInt());
         }
-        System.out.println(mostFrequent(arr, n));
+        if (graph.isTree()) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+        sc.close();
     }
 }
