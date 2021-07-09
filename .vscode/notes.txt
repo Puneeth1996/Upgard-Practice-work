@@ -1,0 +1,66 @@
+10 July 2021 
+
+
+SD C26 - Exam Slots and Guidelines - IIIT-B & upGrad - PGDSD
+
+
+Hi PUNEETH,
+
+Hope you're well and safe.
+
+Experiential Learning Toolkit,
+Fundamentals of Software Engineering 
+Data Structures & Algorithms
+
+on  11th July 2021 and 18th July 2021 (either of the exam slots to be chosen), we are sharing below some important information regarding the same. Please give it a thorough read and watch out for our further communications regarding your exam. 
+Examination Vitals
+
+Slots: A combined exam for Course - Experiential Learning Toolkit, Course -Fundamentals of Software Engineering and Course - Data Structures & Algorithms will be held on the following dates.
+
+You will have to indicate your choice of slot for the exam by Saturday - 20th June, 2021. You will only be allowed to appear for any one of the two slots (i.e. your preferred slot).
+
+Slot 1 - 11th July, 2021, Sunday, Morning Slot
+Registration starts at 10 am IST
+Post registration, one can begin will the exam.
+Slot 2 - 18th July, 2021, Sunday, Evening Slot
+Registration starts at 7pm IST
+Post registration once can begin will the exam.
+The exam duration will be 2 hours and 15 minutes.
+Mock/Practice Exam
+
+To ensure your hands-on familiarity with the Examination Platform - you can click on the mock exam link below. This mock exam link will not be proctored. It is shared with an intent to give you an experience of the Exam Platform.
+
+Link to the Mock Exam - https://assess.wecreateproblems.com/quizzes/8abed1f7-6cde-49e4-90c7-eb1c79c603ef
+We strongly suggest you to give the mock to get familiar with the exam platform
+
+Examination Pattern
+
+The exam will have the following types of questions:
+
+Single choice MCQs 
+Multiple choice MCQs
+Coding/Programming Questions - You will be asked to write code as per the problem statement and the test cases
+Wishing you All the Best!
+
+Best,
+Team PGDSD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
